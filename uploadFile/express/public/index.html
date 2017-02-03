@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .fileUp{
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<h3>图片上传预览</h3>
+<div id="container">
+    <div class="fileUp">
+        <input id="file" name="upFile" type="file">
+        <button id="btn">上传</button>
+    </div>
+    <div>
+        图片预览：
+        <div id="images">
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script>
+    var btn = document.getElementById("btn");
+    var images = document.getElementById("images");
+
+    btn.onclick = function(){
+        var fileObj = document.getElementById("file").files[0];
+        if(fileObj == undefined){
+            alert("请选择文件");
+        }else {
+            var form = new FormData();
+            form.append("file",fileObj);
+            ajax("upload",function(z){
+                if(z == "done"){
+                    getPic(render)
+                }
+            },null,form);
+
+        }
+    };
+
+
+    function render(z) {
+        if(z == "")return;
+        images.innerHTML = "";
+        var data = JSON.parse(z);
+        data.map(function(value){
+            console.log(value);
+            var img = document.createElement("img");
+            img.src = value;
+            images.appendChild(img)
+        })
+    }
+
+
+
+    function getPic(callback) {
+        ajax("/upFile/menu.txt",function(z){
+            callback(z);
+        },null,"","get")
+    }
+
+
+    function ajax(url,fnSuc,fnFail,send,method="post") {
+
+        if (window.XMLHttpRequest) {
+            var ajax1 = new XMLHttpRequest();
+        } else {
+            ajax1 = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        ajax1.open(method, url + "?t=" + new Date().getTime());
+//        ajax1.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        ajax1.send(send);
+        ajax1.onreadystatechange = function () {
+            if (ajax1.readyState == 4) {
+                if (ajax1.status == 200) {
+                    fnSuc(ajax1.responseText)
+                } else {
+                    if(fnFail){
+                        fnFail(ajax1.status)
+                    }
+                }
+            }
+        }
+    }
+
+    getPic(render);
+</script>
+</html>

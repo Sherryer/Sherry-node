@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        img{
+            vertical-align: top;
+            width: 150px;
+            padding: 5px;
+            border: 1px solid #909090;
+            border-radius: 8px;
+            box-shadow: 0 0 5px #dadada;
+        }
+        .pic{
+            float: left;
+            padding: 5px;
+        }
+        #container{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+  <div id="container">
+      <div class="pic">
+      <img src="pic/2.jpg" alt=""/>
+  </div>
+      <div class="pic">
+          <img src="pic/1.jpg" alt=""/>
+      </div>
+
+      <div class="pic">
+          <img src="pic/3.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/4.png" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/5.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/6.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/7.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/8.png" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/9.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/10.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/11.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/2.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/1.jpg" alt=""/>
+      </div>
+
+      <div class="pic">
+          <img src="pic/3.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/4.png" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/5.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/6.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/7.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/8.png" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/9.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/10.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/11.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/2.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/1.jpg" alt=""/>
+      </div>
+
+      <div class="pic">
+          <img src="pic/3.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/4.png" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/5.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/6.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/7.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/8.png" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/9.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/10.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/11.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/2.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/1.jpg" alt=""/>
+      </div>
+
+      <div class="pic">
+          <img src="pic/3.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/4.png" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/5.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/6.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/7.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/8.png" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/9.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/10.jpg" alt=""/>
+      </div>
+      <div class="pic">
+          <img src="pic/11.jpg" alt=""/>
+      </div>
+  </div>
+  <script>
+      var pic=document.getElementsByClassName("pic");
+      var con=document.getElementById("container");
+
+      var www=(document.documentElement.clientWidth||document.body.clientWidth)/pic[0].offsetWidth;
+      www=Math.floor(www);
+      con.style.width=www*pic[0].offsetWidth+"px";
+      con.style.margin="0 auto";
+      var arr=[];
+
+      function demo(){
+          for(var i=0;i<pic.length;i++){
+            if(i<www){
+                arr[i]=pic[i].offsetHeight;
+            }else{
+                var min=Math.min.apply(null,arr);
+                pic[i].style.position="absolute";
+                pic[i].style.top=min+"px" ;
+                for(var j=0;j<arr.length;j++){
+                    if(min==arr[j]){
+                        var p=j;
+                        break
+                    }
+                }
+                pic[i].style.left=pic[p].offsetLeft+"px";
+                arr[p]=arr[p]+pic[i].offsetHeight;
+            }
+          }
+      }
+
+      function ajax(url,fnSuc,fnFail) {
+          if (window.XMLHttpRequest) {
+              var ajax = new XMLHttpRequest();
+          } else {
+              ajax = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+
+          ajax.open("get", url + "?t=" + new Date().getTime());
+          ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+          ajax.send();
+          ajax.onreadystatechange = function () {
+              if (ajax.readyState == 4) {
+                  if (ajax.status == 200) {
+                      fnSuc(ajax.responseText)
+                  } else {
+                      if(fnFail){
+                          fnFail(ajax.status)
+                      }
+                  }
+              }
+          };
+          demo();
+      }
+
+
+
+      window.onload=function(){
+          demo();
+          document.onscroll=go
+      };
+
+
+      function go(){
+          var picn=pic[pic.length-1].offsetTop;
+          var h=document.documentElement.clientHeight||document.body.clientHeight;
+          var st=document.documentElement.scrollTop||document.body.scrollTop;
+//          console.log(picn,h,st)
+          if(h+st>=picn){
+              ajax("1234.txt",function(z){
+                  var json=eval("("+z+")");
+                  for(var i=0;i<json.date.length;i++){
+                      var img=document.createElement("img");
+                      img.src=json.date[i].src;
+                      var div=document.createElement("div");
+                      div.className="pic";
+                      div.appendChild(img);
+                      con.appendChild(div);
+                  }
+                  demo()
+              },function(){
+                  alert("失败了")
+              });
+          }
+
+      };
+
+     var json={"date":[{"src":"pic/1.jpg"},{"src":"pic/2.jpg"},{"src":"pic/3.jpg"},{"src":"pic/5.jpg"},{"src":"pic/6.jpg"},{"src":"pic/7.jpg"}]}
+  </script>
+</body>
+</html>

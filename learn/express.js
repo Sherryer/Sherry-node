@@ -1,13 +1,26 @@
 var express = require("express");
-var formidable = require('formidable');
+var formidable = require('formidable');  // post 请求的多彩的解决方案 formidable
 var sd = require("silly-datetime");
 var fs = require("fs");
 var util = require('util');
-
+var bodyParser = require('body-parser'); // post 请求的轻量级解决方案 body-parser
 var app = express();
 
 app.set("view engine","ejs");
+
+
 app.use(express.static(__dirname+"/static"));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
+// post 请求的轻量级解决方案 body-parser
+
+// app.post("/restful.html",function(req,res){
+//     res.send(JSON.stringify(req.body))
+// });
+
+
 
 app.post("/restful.html",function (req,res) {
     var form = new formidable.IncomingForm();
@@ -19,6 +32,8 @@ app.post("/restful.html",function (req,res) {
     });
 
 });
+
+
 
 app.post("/upload",function (req, res) {
     var form = new formidable.IncomingForm();

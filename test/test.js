@@ -1,13 +1,6 @@
 var fs =require("fs");
+var exec = require('child_process').exec;
 
-var z = [{
-    a_b:"1_2",
-    b:2
-}]
-
-z = JSON.stringify(z);
-
-fs.writeFile("a",z,function (err) {
-    if(err) throw err;
-    console.log(1111)
-});
+exec("rm -rf ./haha",(err)=>{
+console.log(err);
+})

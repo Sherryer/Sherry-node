@@ -10,6 +10,7 @@ exports.upFile = function(req,res){
     form.uploadDir = "./public/upFile";
 
     form.parse(req, function(err, fields, files) {
+        console.log(fields);
 
         var time = sd.format(new Date(), 'YYYYMMDDHHmmss_');
         var number = parseInt(Math.random()*1000);

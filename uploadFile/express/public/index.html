@@ -36,6 +36,7 @@
             alert("请选择文件");
         }else {
             var form = new FormData();
+            form.append("userName","Sherry");
             form.append("file",fileObj);
             ajax("upload",function(z){
                 if(z == "done"){

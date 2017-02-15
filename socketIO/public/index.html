@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    hello index
+    <textarea name="" id="text" cols="30" rows="10" ></textarea>
+    <button id="btn">哈哈哈</button>
+</body>
+<script>
+    var text = document.getElementById("text");
+    var btn = document.getElementById("btn");
+    var socket = io();
+    btn.onclick = function(){
+        socket.emit("tiwen",text.value);
+    };
+    socket.on("huida", function (message) {
+        console.log("服务器说",message)
+    })
+</script>
+</html>

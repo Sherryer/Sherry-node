@@ -9,7 +9,8 @@
     "express": "^4.14.1",
     "formidable": "^1.1.1",
     "silly-datetime": "^0.1.2",
-    "socket.io": "^1.7.2"
+    "socket.io": "^1.7.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "scripts": {

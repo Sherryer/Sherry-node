@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        .part{
+            text-align: center;
+            margin:10px auto;
+            width: 600px;
+            min-height: 150px;
+            padding: 10px;
+            font-size: 20px;
+            border: 2px solid #399fd8;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px #b9b9b9;
+        }
+
+    </style>
+</head>
+<body>
+<div class="part">
+    <p>setname</p>
+    <input type="text" id="set" >
+    <button id="setbtn">发送</button>
+</div>
+<div class="part">
+    <p>sayname</p>
+    发给谁？<input id="send" type="text" ><br>
+    说点啥？<textarea name="" id="textarea" cols="30" rows="10"></textarea>
+    <button id="sendbtn">发送</button>
+</div>
+
+<div id="content">
+
+</div>
+
+<script>
+    var socket = io();
+
+    var set = document.getElementById("set");
+    var setbtn = document.getElementById("setbtn");
+    var send = document.getElementById("send");
+    var sendbtn = document.getElementById("sendbtn");
+    var textarea = document.getElementById("textarea");
+    var content = document.getElementById("content");
+
+    setbtn.onclick = function () {
+        socket.emit("setName",set.value)
+    };
+
+    sendbtn.onclick = function () {
+        socket.emit("sayTo",{to:send.value,msg:textarea.value})
+    }
+
+    socket.on("message",function(message){
+        content.innerHTML = message
+    })
+
+</script>
+</body>
+</html>

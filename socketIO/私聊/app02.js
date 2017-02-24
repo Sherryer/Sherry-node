@@ -14,7 +14,7 @@ function handler (req, res) {
 }
 
 io.on('connection', function(socket){
-
+    console.log(io.sockets.sockets);
     console.log('connection is established!');
     var name;
     socket.on('setName',function (data) {

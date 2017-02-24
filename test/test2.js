@@ -1,7 +1,5 @@
-/**
- * Created by sherryer on 2017/2/3.
- */
-var read = require("./test");
+var z = require ("./test");
+// var c = require("./test3");
 
-var z = read.read();
-console.log(1111,z);
+console.log(z);
+

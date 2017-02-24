@@ -15,7 +15,7 @@ app.use(function(req,res){
 io.on('connection', function(sockt){
     console.log("有一个用户链接喽");
 
-    console.log(io.sockets.sockets)
+    console.log(io.sockets.sockets);
 
 
     sockt.on("tiwen",function(message){

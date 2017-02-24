@@ -26,6 +26,7 @@ io.on('connection', function(socket){
         var toName = data.to;
         var toId;
         if(toId = hashName[toName]){
+            // _.findWhere 用来找一个数组中 哪个对象里有这个属性值对 若找到 返回第一个带有这个属性值对的对象 找不到 返回undefined
             var toSocket = _.findWhere(io.sockets.sockets,{id:toId});
             toSocket.emit('message',data.msg);
         }

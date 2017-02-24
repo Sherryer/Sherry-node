@@ -3,6 +3,8 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
+server.listen(8888);
+
 app.use(express.static("./public"));
 
 app.use(function(req,res){
@@ -30,7 +32,7 @@ io.on('connection', function(sockt){
 
 
 
-server.listen(8888);
+
 
 
 // 对所有用户发广播

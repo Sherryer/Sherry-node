@@ -3,7 +3,7 @@ var io = require('socket.io')(app);
 var fs = require('fs');
 var _ = require('underscore');
 app.listen(3000);
-var hashName = new Array();
+var hashName = {};
 
 function handler (req, res) {
     fs.readFile(__dirname + '/index.html',
@@ -14,15 +14,17 @@ function handler (req, res) {
 }
 
 io.on('connection', function(socket){
-    console.log(io.sockets.sockets);
+
     console.log('connection is established!');
     var name;
     socket.on('setName',function (data) {
         name = data;
-        hashName[name] = socket.id;
+        hashName[data] = socket.id;
         console.log(hashName);
     });
     socket.on('sayTo',function (data) {
+        console.log("who");
+
         var toName = data.to;
         var toId;
         if(toId = hashName[toName]){
@@ -36,6 +38,8 @@ io.on('connection', function(socket){
         delete hashName[name]
     });
 });
+
+console.log("listion 3000")
 
 
 // 参考地址

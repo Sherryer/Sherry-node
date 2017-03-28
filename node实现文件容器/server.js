@@ -4,6 +4,7 @@ var path = require("path");
 var http = require("http");
 
 http.createServer(function (req, res) {
+    console.log(222)
     if(req.url == "/favicon.ico") return;
     var pathname = url.parse(req.url).pathname;
     if (pathname == "/") pathname = "/index.html";
@@ -48,4 +49,4 @@ http.createServer(function (req, res) {
         });
     }
 
-}).listen(8142);
+}).listen(8144);

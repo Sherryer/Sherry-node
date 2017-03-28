@@ -38,6 +38,7 @@
 
 <script>
     var socket = io();
+    var myName ;
 
     var set = document.getElementById("set");
     var setbtn = document.getElementById("setbtn");
@@ -47,7 +48,9 @@
     var content = document.getElementById("content");
 
     setbtn.onclick = function () {
-        socket.emit("setName",set.value)
+        socket.emit("setName",set.value);
+        setbtn.onclick = null;
+        myName = set.value
     };
 
     sendbtn.onclick = function () {

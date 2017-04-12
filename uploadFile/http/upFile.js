@@ -33,6 +33,9 @@ http.createServer(function (req, res) {
                 var oldName = files.pic.path;
                 var newName = __dirname +"/upfile/"+time+files.pic.name;
 
+
+                console.log(fields);
+
                 fs.rename(oldName,newName,function () {
                     res.writeHead(200, {'content-type': 'text/plain'});
                     res.write('received upload:\n\n');

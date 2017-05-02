@@ -4,55 +4,56 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .fileUp{
+        .fileUp {
             min-height: 50px;
         }
     </style>
 </head>
 <body>
 <h3>图片上传预览</h3>
-<div id="container">
-    <div class="fileUp">
-        <input id="file" name="upFile" type="file">
-        <button id="btn">上传</button>
-    </div>
-    <div>
-        图片预览：
-        <div id="images">
-
+<form id="form1">
+    <div id="container">
+        <div class="fileUp">
+            <input id="file" name="file" type="file">
+            <button id="btn">上传</button>
         </div>
+        <div>
+            图片预览：
+            <div id="images">
+
+            </div>
+        </div>
+
     </div>
-
-</div>
-
+</form>
 </body>
 <script>
     var btn = document.getElementById("btn");
     var images = document.getElementById("images");
 
-    btn.onclick = function(){
+    btn.onclick = function () {
         var fileObj = document.getElementById("file").files[0];
-        if(fileObj == undefined){
+        if (fileObj == undefined) {
             alert("请选择文件");
-        }else {
-            var form = new FormData();
-            form.append("userName","Sherry");
-            form.append("file",fileObj);
-            ajax("upload",function(z){
-                if(z == "done"){
+        } else {
+            var form = new FormData(document.getElementById("form1"));
+//            form.append("userName","Sherry");
+//            form.append("file",fileObj);
+            ajax("upload", function (z) {
+                if (z == "done") {
                     getPic(render)
                 }
-            },null,form);
+            }, null, form);
 
         }
     };
 
 
     function render(z) {
-        if(z == "")return;
+        if (z == "")return;
         images.innerHTML = "";
         var data = JSON.parse(z);
-        data.map(function(value){
+        data.map(function (value) {
             console.log(value);
             var img = document.createElement("img");
             img.src = value;
@@ -61,15 +62,14 @@
     }
 
 
-
     function getPic(callback) {
-        ajax("/upFile/menu.txt",function(z){
+        ajax("/upFile/menu.txt", function (z) {
             callback(z);
-        },null,"","get")
+        }, null, "", "get")
     }
 
 
-    function ajax(url,fnSuc,fnFail,send,method="post") {
+    function ajax(url, fnSuc, fnFail, send, method="post") {
 
         if (window.XMLHttpRequest) {
             var ajax1 = new XMLHttpRequest();
@@ -85,7 +85,7 @@
                 if (ajax1.status == 200) {
                     fnSuc(ajax1.responseText)
                 } else {
-                    if(fnFail){
+                    if (fnFail) {
                         fnFail(ajax1.status)
                     }
                 }

@@ -1,0 +1,16 @@
+sherry 密码 123456
+服务器  101.200.62.193
+
+新建用户 useradd sherry
+设置密码 passwd
+
+
+
+查看文件权限 ls -l 路径
+查看文件夹权限 ls -ld 路径
+
+vim 里 i 是编辑 x是删除  （i o a）
+
+
+
+要看一下 screen 那个咋用 继峰教我的那个

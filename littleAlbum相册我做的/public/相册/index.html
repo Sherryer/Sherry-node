@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .content div {
+            float: left;
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 1px solid black;
+        }
+
+        #cat {
+            background: yellow;
+        }
+
+        #fish {
+            background: green;
+        }
+
+        #new {
+            clear: both;
+            width: 80px;
+            height: 25px;
+            background: #3c9eff;
+            text-align: center;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div>这是我的相册们：</div>
+<div class="content">
+    <div id="cat" data-name="小猫">
+        小猫
+    </div>
+    <div id="fish" data-name="小鱼">
+        小鱼
+    </div>
+</div>
+<div id="new">
+    新建相册
+</div>
+</body>
+<script>
+    'use strict';
+    var content = document.getElementsByClassName("content")[0];
+    content.onclick = function (e) {
+        var target = e.target || e.srcElement;
+        if (target.dataset) {
+            location.href = location.href+target.dataset.name;
+        }
+    };
+
+
+
+</script>
+</html>

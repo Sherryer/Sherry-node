@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world</title>
+</head>
+<body>
+<button id="btn">11111</button>
+</body>
+<script>
+
+var myEvent = window.attachEvent || window.addEventListener;
+var chkevent = window.attachEvent ? 'onbeforeunload' : 'beforeunload';
+
+myEvent(chkevent, function(e) {
+//    alert(111)
+    console.log(2222)
+    var confirmationMessage = 'Are you sure to leave the page?';
+    (e || window.event).returnValue = false;
+    return confirmationMessage;
+});
+</script>
+</html>

@@ -4,6 +4,11 @@ sherry 密码 123456
 新建用户 useradd sherry
 设置密码 passwd
 
+查看自己是哪个用户 whoami
+
+获取电脑的公网ip  curl members.3322.org/dyndns/getip
+想知道一个地址的ip ping以下就好啦
+
 
 
 查看文件权限 ls -l 路径
@@ -14,3 +19,7 @@ vim 里 i 是编辑 x是删除  （i o a）
 
 
 要看一下 screen 那个咋用 继峰教我的那个
+退出： ctrl+a  d暂存  k杀死会话  [可滚动
+screen 创建一个新的会话
+screen -ls 列出所有会话
+screen -r +数字 进入会话

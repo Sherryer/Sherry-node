@@ -1,0 +1,1 @@
+path.extname("a.html")  返回 html

@@ -1,1 +1,3 @@
-path.extname("a.html")  返回 html
+path.extname("a.html")  返回扩展名           html
+path.normalize()        把地址变得符合规则。  /for//asdf/ => /for/asdf
+path.resolve("src")     返回绝对地址          '/Users/Sherry/my/jsProject/SherryNode/src'

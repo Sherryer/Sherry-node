@@ -68,7 +68,7 @@ function savePic(data) {
         if (err) {
             console.log(err);
         } else {
-            console.log('写入成功！');
+            console.log('up load pic！');
         }
     })
 }

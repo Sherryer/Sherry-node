@@ -16,6 +16,10 @@
 </body>
 <script>
     axios.get('/getPic').then((response)=>{
+        if(response.data === 'no such file named zzpic'){
+            document.write(response.data)
+            return
+        }
         var picList = response.data.split(',')
         // console.log(picList)
         createImg(picList)

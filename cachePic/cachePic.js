@@ -24,12 +24,16 @@ app.get('/', function (req, res) {
 });
 
 app.get('/getPic', function (req, res) {
-    fs.readdir(PicDir, function (err, data) {
-        if (err) {
-            console.log(err)
-        }
-        res.end(data.toString())
-    })
+    if(fs.existsSync(PicDir)){
+        fs.readdir(PicDir, function (err, data) {
+            if (err) {
+                console.log(err)
+            }
+            res.end(data.toString())
+        })
+    } else {
+        res.end('no such file named zzpic')
+    }
 })
 
 app.get('/deleteAllPic', function (req, res) {

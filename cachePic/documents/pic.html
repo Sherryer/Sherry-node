@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/axios.js"></script>
+    <style>
+        img{
+            width: 200px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+    axios.get('/getPic').then((response)=>{
+        var picList = response.data.split(',')
+        // console.log(picList)
+        createImg(picList)
+    })
+    function createImg(picList){
+        picList.forEach(function (value) {
+            var img = document.createElement('img')
+            img.src = 'zzpic/' + value;
+            document.body.appendChild(img)
+        })
+    }
+
+</script>
+</html>

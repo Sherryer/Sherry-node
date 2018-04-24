@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding: 50px 0 0;
+            background: #f7f7f7;
+        }
+        div{
+            background: yellowgreen;
+            margin: auto;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+<script>
+    var div = document.querySelector('div')
+    window.addEventListener('deviceorientation', function (event) {
+        var alpha = event.alpha;
+        var beta = event.beta;
+        var gamma = event.gamma;
+        console.log('alpha: ', alpha)
+        console.log('beta: ', beta)
+        console.log('gamma: ', gamma)
+        div.innerHTML = 'alpha: '+ alpha + 'beta: ' + beta + 'gamma: '+ gamma
+    }, false);
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>开启 app2</div>
+<button id="btn">完整请求</button>
+<button id="btn2">login</button>
+<button id="btn3">user</button>
+</body>
+<script>
+    var btn = document.getElementById('btn');
+    var btn2 = document.getElementById('btn2');
+    var btn3 = document.getElementById('btn3');
+    btn.onclick = demo;
+    btn2.onclick = demo2;
+    btn3.onclick = demo3;
+    function demo(){
+        var url = 'login';
+        fetch(url,{credentials: 'include'}).then(function(response) {
+            return response.text();
+        }).then(function(data) {
+            console.log(data);
+            setTimeout(demo3, 1000)
+        }).catch(function(e) {
+            console.log("Oops, error");
+        });
+    }
+    function demo2(){
+        var url = 'login';
+        fetch(url,{credentials: 'include'}).then(function(response) {
+            return response.text();
+        }).then(function(data) {
+            console.log(data);
+        }).catch(function(e) {
+            console.log("Oops, error");
+        });
+    }
+    function demo3(){
+        var url = 'user';
+        fetch(url,{credentials: 'include'}).then(function(response) {
+            return response.text();
+        }).then(function(data) {
+            console.log(data);
+        }).catch(function(e) {
+            console.log("Oops, error");
+        });
+    }
+</script>
+</html>

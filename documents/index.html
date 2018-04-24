@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./axios.js"></script>
+</head>
+<body>
+<button id="btn">按钮按钮</button>
+</body>
+<script>
+
+
+    var url = 'http://127.0.0.1:8888'
+    btn.onclick = function () {
+        axios.post(url + '/post', {
+            pic: 123
+        }).then(function (response) {
+            console.log(response);
+        })
+    }
+</script>
+</html>

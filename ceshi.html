@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*.wrapper {*/
+            /*display: grid;*/
+        /*}*/
+        .wrapper {
+            display: inline-grid;
+            grid-template-columns: 10% 20% 40%;
+            grid-template-rows: 150px 50px;
+            grid-gap: 20px 10px;
+        }
+        .child{
+            border: 1px solid black;
+        }
+        .one {
+            grid-column: 1/4;
+        }
+        .three {
+            grid-row-start: 2;
+            grid-row-end: 4;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="child one">1</div>
+    <div class="child">2</div>
+    <div class="child ">3</div>
+    <div class="child three">4</div>
+    <div class="child">5</div>
+    <div class="child">6</div>
+</div>
+</body>
+
+</html>

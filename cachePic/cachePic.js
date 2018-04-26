@@ -47,7 +47,7 @@ app.post('/post', function (req, res) {
     form.parse(req, function (err, fields, files) {
         // console.log(fields.pic)
         var pic = fields.pic;
-        if (pic.match(REG).length) {
+        if (pic && pic.match(REG).length) {
             if(!fs.existsSync(PicDir)){
                 fs.mkdirSync(PicDir)
             }

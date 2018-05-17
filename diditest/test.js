@@ -1,7 +1,7 @@
 var express =require('express');
 var app = express()
 
-app.use(express.static("dist"));
+app.use(express.static("views"));
 app.use(function (req, res) {
     res.writeHead(404,{"Content-type":"text/html;charset=UTF-8"});
     res.end('页面没找到')

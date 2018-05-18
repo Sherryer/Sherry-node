@@ -13,7 +13,6 @@
             margin: 0;
         }
         body{
-            /*padding: 0 10px 20px ;*/
             color: #333;
         }
         h2 {
@@ -135,7 +134,17 @@
 
 </body>
 <script>
-    var getUrl = "url=10.94.100.233:8888/item/index/confirm&token=123456&shopId=888&cityId=1"
+
+    // 上线前要改回去的：
+    // 1、getparams 删掉
+    // 2、最下面的测试请求删掉
+    // 3、注释删掉
+    // 4、第三方公司请求地址  现在是 /accredit
+
+    // var getparams = "=dXJsPTEwLjk0LjEwMC4yMzM6ODg4OC9pdGVtL2luZGV4L2NvbmZpcm0mdG9rZW49MTIzNDU2JnNob3BJZD0xMTUyOTIxNzQzNTYxMzI3MDkxJmNpdHlJZD0xJnR5cGU9Mg==";
+    var getparams = "";
+    // url=10.94.100.233:8888/item/index/confirm&token=123456&shopId=1152921743561327091&cityId=1&type=2
+
     window.onload = function () {
         var contract = document.getElementById('contract');
         var contractDone = document.getElementById('contractDone');
@@ -144,11 +153,12 @@
         var back = document.getElementById('back');
         // var href = '线上地址'
 
-
+        back.onclick = function () {
+            location.href = 'https://b-h5.rlab.net.cn/promisesBackBridge'
+        }
 
 
         var i = 1;
-
         function sub (){
             setTimeout(function () {
                 time.innerHTML = i;
@@ -156,7 +166,7 @@
                     i = i-1;
                     sub()
                 } else {
-                    // btn.innerHTML = '确认并授权'
+                    btn.innerHTML = '确认并授权'
                     addClass()
                     btn.onclick = sendMessage
                 }
@@ -165,27 +175,49 @@
         sub()
 
         function addClass (){
+            btn.onclick = sendMessage
             btn.classList.add('confirming')
         }
 
         function removeClass (){
+            btn.onclick = null
             btn.classList.remove('confirming')
         }
 
         function sendMessage() {
             removeClass()
             //向第三方接口发起请
-            // alert('sendMessage')
+            var params = location.href.split('params=')[1]||getparams
+            params = base64decode(params).split('&')
+            window.z = params
+            var url = 'http://'+params.shift().split('=')[1]
+            var z = params.join('&')
+
+            ajax("post", '/accredit', function (data) {
+                console.log(data)
+                backAjax('post' ,url, z)
+            }, z, function () {
+                addClass()
+                alert('授权失败，请重试')
+            })
 
             //请求b后台接口，再成功跳转页面
+            function backAjax (m, url, z){
+                ajax('post', url, function (data) {
+                    data = JSON.parse(data)
+                    addClass()
+                    if(data.data.result){
+                        changePage()
+                    } else {
+                        alert('授权失败，请重试')
+                    }
+                }, z, function () {
+                    addClass()
+                    alert('授权失败，请重试')
+                })
+            }
 
-            changePage()
-
-
-            addClass()
         }
-
-
 
         function changePage(){
             contract.style.display = 'none'
@@ -196,6 +228,36 @@
             location.href = href
         }
 
+
+
+        function ajax(m,u,f,z,l) {
+            var a = new XMLHttpRequest();
+
+            a.open(m, u + "?t=" + new Date().getTime());
+            a.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            a.send(z);
+            a.onreadystatechange = function () {
+                if (a.readyState == 4) {
+                    if (a.status == 200) {
+                        f(a.responseText)
+                    } else {
+                        if (l) {
+                            l(a.status)
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //测试部分
+        // var obj = JSON.stringify({shopId: 2, token: 123456, cityId: 1, type: 1})
+        // var obj2 = {shopId: 2, token: 123456, cityId: 1, type: 1}
+        // var url = 'http://10.94.100.233:8888/item/index/confirm'
+        // var z = 'shopId=2&token=123456&cityId=1&type=1'
+        // ajax("post", url, function (data) {
+        //     console.log(JSON.parse(data))
+        // }, z)
     }
 </script>
 <script>

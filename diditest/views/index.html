@@ -134,9 +134,7 @@
 
 </body>
 <script>
-    var getparams = "";
-    // var bridgeUrl = 'soda://merchant.com/main/orders';
-    var bridgeUrl = '//172.21.196.8:8080/promisesBackBridge';
+    var bridgeUrl = 'https://b-h5.rlab.net.cn/promisesBackBridge';
 
     window.onload = function () {
         var contract = document.getElementById('contract');
@@ -150,7 +148,7 @@
         }
 
 
-        var i = 1;
+        var i = 14;
         function sub (){
             setTimeout(function () {
                 time.innerHTML = i;
@@ -178,15 +176,13 @@
 
         function sendMessage() {
             removeClass()
-            //向第三方接口发起请
-            var params = location.href.split('params=')[1]||getparams
+            var params = location.href.split('params=')[1]||""
             params = base64decode(params).split('&')
             window.z = params
             var url = 'http://'+params.shift().split('=')[1]
             var z = params.join('&')
 
             ajax("post", '/accredit', function (data) {
-                console.log(data)
                 backAjax('post' ,url, z)
             }, z, function () {
                 addClass()
@@ -206,13 +202,6 @@
                 }, z, function () {
                     addClass()
                     alert('授权失败，请重试')
-
-                    // 删掉
-                    changePage()
-                    // 删掉
-
-
-
                 })
             }
 

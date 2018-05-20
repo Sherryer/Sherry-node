@@ -140,12 +140,18 @@
     // 2、最下面的测试请求删掉
     // 3、注释删掉
     // 4、第三方公司请求地址  现在是 /accredit
+    // 5、testurl
+
+    // ?params=dXJsPTEwLjk0LjEwMC4yMzM6ODg4OC9pdGVtL2luZGV4L2NvbmZpcm0mdG9rZW49MTIzNDU2JnNob3BJZD0xMTUyOTIxNzQzNTYxMzI3MDkxJmNpdHlJZD0xJnR5cGU9Mg==
 
     // 迈阿密地址
     // http://45.77.167.131:20001/?params=dXJsPTEwLjk0LjEwMC4yMzM6ODg4OC9pdGVtL2luZGV4L2NvbmZpcm0mdG9rZW49MTIzNDU2JnNob3BJZD0xMTUyOTIxNzQzNTYxMzI3MDkxJmNpdHlJZD0xJnR5cGU9Mg==
-    // var getparams = "=dXJsPTEwLjk0LjEwMC4yMzM6ODg4OC9pdGVtL2luZGV4L2NvbmZpcm0mdG9rZW49MTIzNDU2JnNob3BJZD0xMTUyOTIxNzQzNTYxMzI3MDkxJmNpdHlJZD0xJnR5cGU9Mg==";
     var getparams = "";
     // url=10.94.100.233:8888/item/index/confirm&token=123456&shopId=1152921743561327091&cityId=1&type=2
+
+    // var testUrl = 'https://b-h5.rlab.net.cn/promisesBackBridge'
+    // var bridgeUrl = '//b-h5.rlab.net.cn/promisesBackBridge';
+    var bridgeUrl = '//soda://merchant.com/main/orders';
 
     window.onload = function () {
         var contract = document.getElementById('contract');
@@ -156,11 +162,11 @@
         // var href = '线上地址'
 
         back.onclick = function () {
-            location.href = 'https://b-h5.rlab.net.cn/promisesBackBridge'
+            location.href = bridgeUrl
         }
 
 
-        var i = 14;
+        var i = 1;
         function sub (){
             setTimeout(function () {
                 time.innerHTML = i;
@@ -255,8 +261,9 @@
         //测试部分
         // var obj = JSON.stringify({shopId: 2, token: 123456, cityId: 1, type: 1})
         // var obj2 = {shopId: 2, token: 123456, cityId: 1, type: 1}
+
         // var url = 'http://10.94.100.233:8888/item/index/confirm'
-        // var z = 'shopId=2&token=123456&cityId=1&type=1'
+        // var z = 'shopId=2&token=123456&cityId=1&type=2'
         // ajax("post", url, function (data) {
         //     console.log(JSON.parse(data))
         // }, z)

@@ -134,9 +134,9 @@
 
 </body>
 <script>
-    // var bridgeUrl = 'https://b-h5.rlab.net.cn/promisesBackBridge';
+    var bridgeUrl = 'https://b-h5.rlab.net.cn/promisesBackBridge';
     // var bridgeUrl = '//172.21.196.8:8080/promisesBackBridge';
-    var bridgeUrl = '//10.95.118.49:20001/promisesBackBridge';
+    // var bridgeUrl = '//10.95.118.49:20001/promisesBackBridge';
 
     window.onload = function () {
         var contract = document.getElementById('contract');
@@ -150,7 +150,7 @@
         }
 
 
-        var i = 1;
+        var i = 14;
         function sub (){
             setTimeout(function () {
                 time.innerHTML = i;
@@ -206,7 +206,7 @@
                     alert('授权失败，请重试')
 
                     // 删除
-                    changePage()
+                    // changePage()
                 })
             }
 

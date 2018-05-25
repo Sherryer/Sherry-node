@@ -178,7 +178,7 @@
             var params = location.href.split('params=')[1]||""
             params = base64decode(params).split('&')
             window.z = params
-            var url = 'http://'+params.shift().split('=')[1]
+            var url = params.shift().split('=')[1]
             var z = params.join('&')
 
             ajax("post", '/accredit', function (data) {

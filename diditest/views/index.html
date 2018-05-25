@@ -134,7 +134,6 @@
 </body>
 <script>
     var bridgeUrl = 'https://b-h5.rlab.net.cn/promisesBackBridge';
-    // var bridgeUrl = 'http://pre.b-h5.rlab.net.cn/promisesBackBridge';
 
     window.onload = function () {
         var contract = document.getElementById('contract');
@@ -185,8 +184,8 @@
             ajax("post", '/accredit', function (data) {
                 backAjax('post' ,url, z)
             }, z, function () {
-                addClass()
-                alert('授权失败，请重试')
+                // addClass()
+                backAjax('post' ,url, z)
             })
 
             //请求b后台接口，再成功跳转页面

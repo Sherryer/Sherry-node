@@ -19,4 +19,21 @@
 <body>
 <h1>外卖你好</h1>
 </body>
+<script>
+    function getLogger(options) {
+        if (options && options.logger) {
+            return options.logger;
+        } else if (options && options.verbose) {
+            return console.log.bind(console);
+        }
+        return function(){};
+    }
+
+
+    var z = {
+        disableDotRule: true,
+        verbose: true
+    }
+
+</script>
 </html>

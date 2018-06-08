@@ -3,37 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <style>
-
-        body{
-            padding: 0;
-            margin: 0;
+        .content {
+            /*height: 100px;*/
+            border: 1px solid #ff32b6;
+            overflow: hidden;
+            box-sizing: border-box;
         }
-        h1{
-            padding: 0;
-            margin: 0;
+        .content * {
+            box-sizing: border-box;
+        }
+        .content div{
+            border: 1px solid grey;
+        }
+        .p1{
+            /*float: left;*/
+            /*width: 60%;*/
+        }
+        .right {
+            float: right;
+            width: 40%;
+            display: flex;
+        }
+        .p2, .p3 {
+            flex: 1;
         }
     </style>
 </head>
 <body>
-<h1>外卖你好</h1>
+<div class="content">
+    <div class="p1">嘻嘻嘻哈哈哈哈撒发生的发生的发生的饭撒的发生的饭撒地方撒地方
+        <div class="right">
+            <div class="p2">2</div>
+            <div class="p3">3</div>
+        </div>
+    </div>
+
+</div>
 </body>
-<script>
-    function getLogger(options) {
-        if (options && options.logger) {
-            return options.logger;
-        } else if (options && options.verbose) {
-            return console.log.bind(console);
-        }
-        return function(){};
-    }
-
-
-    var z = {
-        disableDotRule: true,
-        verbose: true
-    }
-
-</script>
 </html>

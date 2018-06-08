@@ -65,6 +65,7 @@
         }
         #contract{
             /*display: none;*/
+            height: 100%;
         }
 
 
@@ -88,6 +89,53 @@
             position: absolute;
             bottom: 20px;
             left: 7.5%
+        }
+
+
+        .obscure{
+            background: #585858;
+            -webkit-filter: blur(2px);
+            -moz-filter: blur(2px);
+            -o-filter: blur(2px);
+            -ms-filter: blur(2px);
+            filter: blur(2px);
+            opacity: 0.6;
+            filter: progid: DXImageTransform.Microsoft.Blur(pixelRadius=2, MakeShadow=false);
+        }
+
+        .alert {
+            display: none;
+            border-radius: 6px;
+            width: 255px;
+            height: 152px;
+            padding:0;
+            border: 1px solid #e0e0e0;
+            background: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%, -55%);
+        }
+        .alert span{
+            display: block;
+            padding: 48.5px 0 22px;
+        }
+        .alert button {
+            border-radius: 30px;
+            width: 146px;
+            height: 28px;
+            outline: none;
+            display: block;
+            margin: 0 auto;
+            color: white;
+            background-color: #62a8f8;
+            border: none;
+        }
+
+        .alert button:active{
+            color: #d1d1d1;
+            box-shadow: 0 0 10px;
         }
     </style>
 </head>
@@ -131,6 +179,12 @@
     <button id="back" class="confirm confirming" >返回滴滴商户</button>
 </div>
 
+
+<div class="alert">
+    <span>授权失败，请重试</span>
+    <button id="alertbtn">确定</button>
+</div>
+
 </body>
 <script>
     var bridgeUrl = 'https://b-h5.rlab.net.cn/promisesBackBridge';
@@ -141,6 +195,8 @@
         var btn = document.getElementById('btn');
         var time = document.getElementById('time');
         var back = document.getElementById('back');
+        var alertbtn = document.getElementById('alertbtn');
+        var alertPart = document.getElementsByClassName('alert')[0]
 
         back.onclick = function () {
             location.href = bridgeUrl
@@ -188,19 +244,16 @@
                 backAjax('post' ,url, z)
             })
 
-            //请求b后台接口，再成功跳转页面
             function backAjax (m, url, z){
                 ajax('post', url, function (data) {
                     data = JSON.parse(data)
-                    addClass()
                     if(data.data.result){
                         changePage()
                     } else {
-                        alert('授权失败，请重试')
+                        alert()
                     }
                 }, z, function () {
-                    addClass()
-                    alert('授权失败，请重试')
+                    alert()
                 })
             }
 
@@ -235,6 +288,21 @@
                 }
             }
         }
+
+
+
+        window.alert = function () {
+            contract.className = 'obscure'
+            alertPart.style.display = 'block'
+            document.body.style.overflow = 'hidden'
+        }
+        alertbtn.onclick = function () {
+            contract.className = ''
+            alertPart.style.display = 'none'
+            document.body.style.overflow = 'scroll'
+            addClass()
+        }
+
     }
 </script>
 <script>

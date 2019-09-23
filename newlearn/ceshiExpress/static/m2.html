@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+  // 如果是iphone，直接使用universal link
+  if (/iPhone|iPod|iPad/g.test(navigator.userAgent)) {
+    location.href = "//dpl.qyer.com/app/guide?act=" + this.strType + "Detail" + "&id=" + this.id + "&auto=1"
+  } else {
+    // 安卓使用url scheme
+    var appDetect = document.createElement('iframe');
+    appDetect.id = 'app-detect';
+    appDetect.style = 'display: none';
+    appDetect.src = 'qyer://' + this.strType + '/detail/' + this.id;
+    // 插入文档流，尝试打开APP
+    document.body.appendChild(appDetect);
+    // 移除探测器
+    appDetect.remove();
+  }
+
+</script>
+</html>

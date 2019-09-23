@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1:hover ~ #div2{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">111</div>
+<div id="div2">22</div>
+</body>
+<!--<script type="text/javascript" src="https://img6.didistatic.com/static/tms/cdn/z/apollo-jsdk/apollo-jsdk/1.0.5/apollo.min.js"></script>-->
+<!--<script type="text/javascript" src="http://img-ys011.didistatic.com/static/apollo_js/apollo.debug.js"></script>-->
+<!--<script type="text/javascript" src="http://img-ys011.didistatic.com/static/apollo_js/apollo.debug.js"></script>-->
+<script type="text/javascript" src="http://img-ys011.didistatic.com/static/apollo_js/apollo.min.js"></script>
+<!--<script type="text/javascript" src="http://img-ys011.didistatic.com/static/apollo_js/apollo.debug.2.js"></script>-->
+<script type="text/javascript">
+  function demo () {
+    Apollo.getToggle({
+      name: 'B_PC_Upgrade',
+      key: '1',
+      phone: 18514203861,
+      debug: true
+    }, function (result) {
+      window.z = result
+      console.log('result:', result)
+      console.log('result.data:', result.data)
+      console.log('result.data.B_PC_Upgrade:', result.data.B_PC_Upgrade)
+      console.log('result.message:', result.message)
+      console.log('字符串模式result:', JSON.stringify(result))
+      if (!result.code) {
+        var toggle = result.data.exp_or_toggle_name; // 或者 result.data['exp_or_toggle_name']
+        // if (toggle.isAllow()) {
+        //   // 进入灰度或者实验
+        // }
+      }
+    });
+  }
+  demo()
+
+</script>
+</html>

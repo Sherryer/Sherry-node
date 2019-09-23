@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <base href="/pc/" />
+</head>
+<body>
+<div id="div" class="btn">445</div>
+</body>
+<script src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js"></script>
+<script>
+  // vue 中使用，就传ref，用完就 destroy
+
+  var div = document.getElementById('div')
+  var clipboard = new ClipboardJS(div, {
+    text (a) {
+      console.log(a)
+      return 22
+    }
+  })
+
+  clipboard.on('success', function(e) {
+    clipboard.destroy()
+  });
+
+  clipboard.on('error', function(e) {
+    clipboard.destroy()
+  });
+</script>
+</html>

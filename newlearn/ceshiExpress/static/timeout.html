@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="h"></h1>interavl
+<h1 id="h2"></h1>timeout
+<!--<h1 id="h3">hello</h1>-->
+</body>
+<script>
+    var i = 0
+    var h = document.getElementById('h');
+    setInterval(function () {
+      h.innerHTML = i++
+    },1000)
+
+    var j = 0
+    var h2 = document.getElementById('h2');
+    var timeout = function () {
+      setTimeout(function () {
+        h2.innerHTML = j++
+        timeout()
+      }, 1000)
+    }
+    timeout()
+
+    // var h3 = document.getElementById('h3');
+    // setTimeout(function () {
+    //   h3.innerHTML = 'hello word'
+    //   timeout()
+    // }, 3000)
+</script>
+</html>

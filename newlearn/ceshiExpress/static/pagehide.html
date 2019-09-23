@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1><span>page hide?</span><span id="hide"></span></h1>
+333
+<h1 id="d"></h1>
+<h1 id="d2"></h1>
+<h1><span>visibilityChangeProperty:</span><span id="span"></span></h1>
+<a href="www.baidu.com" target="_blank">baidu</a>
+</body>
+<script>
+  var hide = document.getElementById('hide')
+    if(window.onpagehide) {
+      hide.innerHTML = '是'
+    } else {
+      hide.innerHTML = '否'
+    }
+    var d = document.getElementById('d')
+    window.addEventListener('pagehide', function () {
+      alert(2222)
+    d.innerHTML = '1111'
+  });
+
+    function getPagePropertyPrefix() {
+      const prefixes = ['webkit', 'moz', 'ms', 'o'];
+      let correctPrefix;
+
+      if ('hidden' in document) return '';
+
+      prefixes.forEach((prefix) => {
+        if (`${prefix}Hidden` in document) {
+          correctPrefix = prefix;
+        }
+      });
+
+      return correctPrefix || false;
+    }
+
+    function getVisibilityChangeProperty() {
+      const prefix = getPagePropertyPrefix();
+      if (prefix === false) return false;
+
+      return `${prefix}visibilitychange`;
+    }
+
+    // 这里就是不能用 window.addEventListener
+    var visibilityChangeProperty = getVisibilityChangeProperty()
+    document.getElementById('span').innerHTML = visibilityChangeProperty
+
+    var d2 = document.getElementById('d2')
+    document.addEventListener(visibilityChangeProperty, function () {
+      d2.innerHTML = '2222'
+    });
+
+</script>
+</html>

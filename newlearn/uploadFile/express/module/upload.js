@@ -5,7 +5,8 @@ var sd = require('silly-datetime');
 var path = require("path");
 
 
-exports.upFile = function(req,res){
+exports.upFile = function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', '*')
     var form = new formidable.IncomingForm();
     form.uploadDir = "./public/upFile";
 

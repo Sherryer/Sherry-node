@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  function getPagePropertyPrefix() {
+    const prefixes = ['webkit', 'moz', 'ms', 'o']
+    let correctPrefix;
+
+    if ('hidden' in document) return ''
+
+    prefixes.forEach((prefix) => {
+      if (`${prefix}Hidden` in document) {
+        correctPrefix = prefix;
+      }
+    });
+
+    return correctPrefix || false;
+  }
+
+  function getVisibilityChangeProperty() {
+    const prefix = getPagePropertyPrefix()
+    if (prefix === false) return false;
+
+    return `${prefix}visibilitychange`
+  }
+
+  function isPageHidden() {
+    const prefix = getPagePropertyPrefix()
+    if (prefix === false) return false;
+
+    const hiddenProperty = prefix ? `${prefix}Hidden` : 'hidden'
+    return document[hiddenProperty]
+  }
+
+  function checkOpen(cb, timeout) {
+    const visibilityChangeProperty = getVisibilityChangeProperty();
+    const timer = setTimeout(() => {
+      const hidden = isPageHidden();
+      if (!hidden) {
+        cb() // 失败时回调
+      }
+    }, timeout)
+
+    let clear = () => {
+      clearTimeout(timer)
+      document.removeEventListener(visibilityChangeProperty, clear)
+      document.removeEventListener('pagehide', clear)
+    }
+
+    if (visibilityChangeProperty) {
+      document.addEventListener(visibilityChangeProperty, clear)
+      return;
+    }
+
+    window.addEventListener('pagehide', clear)
+  }
+
+
+    function callback () {
+      alert('打开失败')
+    }
+  checkOpen(callback, 5000)
+</script>
+</html>

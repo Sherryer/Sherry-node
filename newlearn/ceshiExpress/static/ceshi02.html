@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  const initialTime = new Date();
+  let counter = 0;
+  let waitTime = 0;
+
+  const checkOpen = setInterval(() => {
+    count++;
+    waitTime = new Date() - initialTime;
+
+    if (waitTime > 2500) {
+      clearInterval(checkOpen);
+      cb();
+    }
+
+    if (counter < 100) return;
+
+    clearInterval(checkOpen);
+
+    const hide = document.hidden || document.webkitHidden;
+
+    if (!hide) {
+      cb(); // 唤端失败的回调函数
+    }
+  }, 20);
+
+</script>
+</html>

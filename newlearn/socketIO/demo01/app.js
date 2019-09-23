@@ -10,7 +10,11 @@ app.use(express.static("./public"));
 
 
 io.on("connection",function(socket){
-    console.log(socket.id)
+  console.log(socket.id)
+  socket.on('tiwen',function (data) {
+    console.log(data);
+    io.emit('huida',data);
+  })
 });
 
 server.listen(8142);

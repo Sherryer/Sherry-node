@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container {
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+跨域
+路线
+平滑移动
+
+
+</body>
+<script src="//webapp.didistatic.com/static/webapp/map/z/map-webapp-jssdk/1.6.2/DDMap.didi.min.js"></script>
+<!--<script src="https://webapp.didistatic.com/static/webapp/map/z/map-webapp-jssdk/1.5.13/DDMap.ali.min.js"></script>-->
+<script>
+  DDMap.ready(function (mapInstance) {
+    var map = mapInstance.createMap('container', {
+      lat: 40.06952006216543,
+      lng: 116.23358224151612,
+      zoom: 14
+    })
+    // console.log(map)
+    // window.z = map
+    //
+    // map.on('map.created', (zoom) => {
+    //   console.log('created');
+    // });
+
+    // 起终点
+    let pointer = new DDMap.component.Pointer({
+      map: map,
+      lat: 40.06,
+      lng: 116.23,
+      type: 0,
+      clickHandler: function () {
+        // console.log(111)
+        pointer.showTip('<div>123123123</div>')
+      }
+    });
+
+
+    // 引导路线 直 虚线
+    // var guideLayer = new DDMap.vector.GuideLayer({
+    //   map: map,
+    //   path: [{lat: 40.06952006216543,
+    //     lng: 116.23358224151612}, {lat: 40,
+    //     lng: 116},
+    //     {lat: 40.06,
+    //       lng: 116.23},
+    //   ]
+    // });
+
+    // var guideLayer = new DDMap.vector.RouteLayer({
+    //   map: map,
+    //   path: [{lat: 40.06952006216543,
+    //         lng: 116.23358224151612}, {lat: 40,
+    //         lng: 116},
+    //         {lat: 40.06,
+    //           lng: 116.23},
+    //       ]
+    // });
+
+
+    // 路线
+    // let route = new DDMap.component.Route({
+    //   map: map,
+    //   startPoint: { lat: 40.06952006216543, lng: 116.23358224151612},
+    //   destPoint : {lat: 40, lng: 116},
+    //   token: 'SP98U-r6rNK_eYg6d0scKWrXPFuKCcRh49Qesv5YXgkkzDkOwkAMQNG7_NqKbE9mc0vPHVjC0gwSiCri7ihK9ZqvvzKUIE06KcIwwoThhKmqCiMRG_NOJjgcEU4ECGfCW6otldLVe8lduBJFWIiVz-v7viyE_oQbYXlWdytWhTuBpea5anWtCI99-dzyfwAAAP__',
+    //   callback : function(err, route){
+    //     //成功时err为null,有route对象
+    //     //失败时err为error对象
+    //     console.log('err', err)
+    //     console.log('route', route)
+    //   }
+    // });
+
+    // 归位按钮
+    // var resetControl = new DDMap.control.ResetControl({
+    //   map: map,
+    //   margin: '0 0 9px 9px',
+    //   clickHandler: function () {
+    //     console.log('归位按钮2')
+    //     map.setView([], {paddingTop:500, paddingBottom:0, paddingLeft:32, paddingRight:32});
+    //     map.setCenter(40, 116)
+    //   }
+    // });
+
+
+    // 步行引导按钮
+    // var walkControl = new DDMap.control.WalkControl({
+    //   map: map,
+    //   margin: '0 0 9px 9px',
+    //   clickHandler: function () {
+    //     console.log('步行引导按钮')
+    //     map.setView([], {paddingTop:500, paddingBottom:0, paddingLeft:32, paddingRight:32, center: {lat: 40.06952006216543, lng: 116.23358224151612}});
+    //   }
+    // })
+  });
+
+
+
+</script>
+</html>

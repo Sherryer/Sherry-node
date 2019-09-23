@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    a{
+        font-size: 32px;
+        display: block;
+    }
+</style>
+
+<body>
+<h1 id="l">location.href</h1>
+<a href="alipayqr://platformapi/startapp?saId=10000007">a标签</a>
+<h1 id="i">iframe</h1>
+</body>
+<script type="text/javascript">
+var l = document.getElementById('l')
+var i = document.getElementById('i')
+
+    l.onclick = function () {
+      location.href = 'alipayqr://platformapi/startapp?saId=10000007'
+    }
+
+i.onclick = function () {
+  var iframe = document.createElement('iframe')
+  iframe.src = 'alipayqr://platformapi/startapp?saId=10000007'
+  document.body.appendChild(iframe)
+}
+</script>
+</html>

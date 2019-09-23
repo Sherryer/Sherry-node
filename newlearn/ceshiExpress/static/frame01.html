@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="openapp">打开</div>
+</body>
+<script>
+  var openUrl = {
+    open: 'app://xxxxx',
+    down: 'xxxxxxxx'
+  }
+  var iframe = document.createElement('iframe')
+  var body = document.body
+  iframe.style.cssText = 'display:none;width=0;height=0'
+  var timer = null
+
+  // 立即打开的按钮
+  var openapp = document.getElementById('openapp')
+  openapp.addEventListener('click', function () {
+    if (/MicroMessenger/gi.test(navigator.userAgent){
+// 引导用户在浏览器中打开
+      alert('浏览器里打开')
+    }
+    else
+    {
+      body.appendChild(iframe)
+      iframe.src = openUrl.open
+      timer = setTimeout(function () {
+        wondow.location.href = openUrl.down
+      }, 500)
+    }
+  }, false)
+</script>
+</html>

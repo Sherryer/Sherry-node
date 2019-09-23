@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>判断时段是否重复</title>
+</head>
+<body>
+</body>
+<script>
+  var dataList = [
+    {
+      starttime: '23:10',
+      endtime: '11:20',
+      allDay: false
+    },
+    {
+      starttime: '11:10',
+      endtime: '13:20',
+      allDay: true
+    }
+  ]
+
+  function haveRepeatTimeFrame (list, currentIndex) {
+    if (list.length === 1) {
+      return true
+    }
+    for (let i = 0; i < list.length; i++) {
+      if (i !== currentIndex) {
+        // 全天
+        if (list[i].allDay || list[currentIndex].allDay) {
+          return false
+        }
+
+        if (timeCompare(list[i].starttime, list[i].endtime) && timeCompare(list[currentIndex].starttime, list[currentIndex].endtime)) {
+          // 都跨天
+          return false
+        } else if (timeCompare(list[i].starttime, list[i].endtime) || timeCompare(list[currentIndex].starttime, list[currentIndex].endtime)) {
+          // 一个时段跨天
+          return timeCompare(list[currentIndex].starttime, list[i].endtime) && timeCompare(list[i].starttime, list[currentIndex].endtime)
+        } else {
+          return timeCompare(list[currentIndex].starttime, list[i].endtime) || timeCompare(list[i].starttime, list[currentIndex].endtime)
+        }
+      }
+    }
+  }
+
+  // 比较 xx:xx 类型时间大小
+  function timeCompare (time1, time2) {
+    time1 = time1.split(':')
+    time2 = time2.split(':')
+    if (+time1[0] > +time2[0]) {
+      return true
+    } else if (time1[0] === time2[0]) {
+      return +time1[1] >= +time2[1]
+    }
+    return false
+  }
+
+  var z = haveRepeatTimeFrame(dataList, 0)
+  console.log(z)
+</script>
+</html>

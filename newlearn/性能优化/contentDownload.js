@@ -12,7 +12,7 @@ app.get("/a.js", function (req, res) {
         setTimeout(function () {
             res.end("var a = 1;console.log('done')")
         }, 1000)
-    }, 2000)
+    }, 1000)
 })
 
 app.use(express.static("./static"))

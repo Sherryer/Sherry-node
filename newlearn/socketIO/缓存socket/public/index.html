@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--get 请求-->
+<!--socket 请求-->
+<!--静态资源-->
+<div>
+    <label for="input1">
+        设备id
+        <input type="text" id="input1">
+    </label>
+    <label for="input2">
+        打印内容
+        <input type="text" id="input2">
+    </label>
+    <button id="btn">发送</button>
+    <div>
+        <button id="go">连接socket</button>
+    </div>
+</div>
+<div>
+    <button id="get">get 请求测试</button>
+</div>
+</body>
+<script src="/test.js"></script>
+<script>
+  // service worker 注册代码 只负责注册
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // 在 window onload 后执行原因：
+      // 不跟页面打开时其他下载资源抢占手机性能，缩短首屏展示时间
+
+      // 注册
+      navigator.serviceWorker.register('/sw-demo02.js', { scope: '/' })
+      // 指定scope 不能越域，如果要越域 需要 sw 文件 '/sw/sw-demo.js' 的返回头包含 service-worker-allowed: /
+        .then((regist) => {
+          console.log('注册成功02', regist)
+        }).catch((e) => {
+        console.log('注册失败')
+      })
+    })
+  }
+</script>
+<script src="http://127.0.0.1:8143/socket.io/socket.io.js"></script>
+<script src="ajax.js"></script>
+<script src="index.js"></script>
+</html>

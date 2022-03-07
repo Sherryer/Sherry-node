@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="/test.js"></script>
+<script>
+  // service worker 注册代码 只负责注册
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // 在 window onload 后执行原因：
+      // 不跟页面打开时其他下载资源抢占手机性能，缩短首屏展示时间
+
+      // 注册
+      navigator.serviceWorker.register('/sw-demo.js', { scope: '/' })
+      // 指定scope 不能越域，如果要越域 需要 sw 文件 '/sw/sw-demo.js' 的返回头包含 service-worker-allowed: /
+      .then((regist) => {
+        console.log('注册成功', regist)
+      }).catch((e) => {
+        console.log('注册失败')
+      })
+    })
+  }
+</script>
+
+<script>
+  // service worker 工作代码（外链文件） 负责安装、激活
+</script>
+</html>

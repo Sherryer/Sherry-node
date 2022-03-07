@@ -1,6 +1,6 @@
 const express = require('express')
 const expressGraphQL = require('express-graphql')
-const Dataloader = require('dataloader')
+const Dataloader = require('dataloader/dataloader')
 const ramda = require('ramda')
 
 const app = express()

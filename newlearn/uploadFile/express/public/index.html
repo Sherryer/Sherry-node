@@ -37,8 +37,10 @@
             alert("请选择文件");
         } else {
             var form = new FormData(document.getElementById("form1"));
-//            form.append("userName","Sherry");
-//            form.append("file",fileObj);
+            // console.log('form', form)
+           form.append("userName","Sherry");
+           form.append("file",fileObj);
+            debugger
             ajax("upload", function (z) {
                 if (z == "done") {
                     getPic(render)

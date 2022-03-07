@@ -12,10 +12,10 @@ app.get("/",function(req,res){
         //httpOnly: true 字段可以让你的 cookie 不可见，删掉就可见了
         res.cookie("a","Sherry",{
             httpOnly: true,
-            expires:new Date(Date.now()+50000),
+            expires:new Date(Date.now()+5000000),
           /* 等同于 maxAge: 5000 */
         });
-        res.send("没有cookie喔，我把它设为 Sherry 持续5s，请刷新页面")
+        res.send("没有cookie喔，我把它设为 Sherry 持续500s，请刷新页面")
     }
 });
 app.use(function(req,res){
